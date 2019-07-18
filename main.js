@@ -7,9 +7,14 @@
     paper.install(window) //installs Paper.js globally
     paper.setup(document.getElementById('mainCanvas')) //attaches Paper.js to canvas
 
-    /* Creates a circle object with 3 args: x, y, and radius */
-    var c = Shape.Circle(200, 200, 50) //var?? not const??? omg omg omg why no omg
-    c.fillColor = 'green'
+    /* Fill canvas with circles laid out in a grid -- AUTOMATE the BORING REPETITIVE STUFF */
+    var c
+    for(var x=25; x<400; x+=50) { //initial condition; ending condition; increment value
+        for(var y=25; y<400; y+=50) { //same as above, but for the y-axis
+            c = Shape.Circle(x, y, 20)
+            c.fillColor = 'green'
+        }
+    }
 
     paper.view.draw() //tells Paper.js to actually draw the thing
 
