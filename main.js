@@ -7,13 +7,21 @@
     paper.install(window) //installs Paper.js globally
     paper.setup(document.getElementById('mainCanvas')) //attaches Paper.js to canvas
 
-    /* Fill canvas with circles laid out in a grid -- AUTOMATE the BORING REPETITIVE STUFF */
-    var c
-    for(var x=25; x<400; x+=50) { //initial condition; ending condition; increment value
-        for(var y=25; y<400; y+=50) { //same as above, but for the y-axis
-            c = Shape.Circle(x, y, 20)
-            c.fillColor = 'green'
-        }
+    /* Allow user input */
+    var tool = new Tool() //create tool object (object used by Paper.js for user input)
+
+    var c = Shape.Circle(200, 200, 80)
+    c.fillColor = 'black'
+    var text = new PointText(200, 200)
+    text.justification = 'center'
+    text.fillColor = 'white'
+    text.fontSize = 20
+    text.content = 'hello world'
+
+    tool.onMouseDown = function(event) { //onMouseDown is an EVENT HANDLER
+        // var c = Shape.Circle(event.point.x, event.point.y, 20)
+        var c = Shape.Circle(event.point, 20) //shorter way of achieving the above
+        c.fillColor = 'green'
     }
 
     paper.view.draw() //tells Paper.js to actually draw the thing
